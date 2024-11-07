@@ -1,0 +1,127 @@
+* {
+	box-sizing: border-box;
+	font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	font-size: 18px;
+}
+html {
+	height: 100%;
+}
+body {
+	position: relative;
+	min-height: 100%;
+	color: #555555;
+	margin: 0;
+	padding-bottom: 100px; /* Same height as footer */
+}
+
+.content-wrapper {
+	width: 1050px;
+	margin: 0 auto;
+}
+
+header {
+    background-color: rgba(0, 0, 0, 0); /* Fully transparent */
+}
+header .content-wrapper {
+	display: flex;
+}
+header h1 {
+	display: flex;
+	flex-grow: 1;
+	flex-basis: 0;
+	font-size: 20px;
+	margin: -5px;
+	padding: 10px 0;
+    font-size:32px; /* Adjust this value to make the title bigger */
+    font-weight: bold;
+	color: black;
+}
+
+header nav {
+	display: flex;
+	flex-grow: 1;
+	flex-basis: 0;
+	justify-content: center;
+	align-items: center;
+}
+header nav a {
+	text-decoration: none;
+	color: white;
+	padding: 10px 10px;
+	margin: 0 10px;
+    font-weight: bold;
+}
+header nav a:hover {
+	border-bottom: 2px solid #aaa;
+}
+header .link-icons {
+	display: flex;
+	flex-grow: 1;
+	flex-basis: 0;
+	justify-content: flex-end;
+	align-items: center;
+	position: relative;
+}
+header .link-icons a {
+	text-decoration: none;
+	color: #394352;
+	padding: 0 10px;
+}
+header .link-icons a:hover {
+	color: #4e5c70;
+}
+header .link-icons a i {
+	font-size: 18px;
+}
+header .link-icons a span {
+	display: inline-block;
+	text-align: center;
+	background-color: #63748e;
+	border-radius: 50%;
+	color: #FFFFFF;
+	font-size: 12px;
+	line-height: 16px;
+	width: 16px;
+	height: 16px;
+	font-weight: bold;
+	position: absolute;
+	top: 22px;
+	right: 0;
+}
+
+main .placeorder h1 {
+	display: block;
+	font-weight: normal;
+	margin: 0;
+	padding: 40px 0;
+	font-size: 24px;
+	text-align: center;
+	width: 100%;
+}
+main .placeorder p {
+	text-align: center;
+    color: white;
+}
+
+.btnLogin-popup {
+    background-color: transparent; /* Remove the background */
+    border: none;/* Remove the border */
+    color: white; /* Optional: Change the text color */
+    font-size: 18px; /* Adjust the font size */
+    cursor: pointer; /* Add a pointer cursor to indicate it's clickable */
+    padding: 10px 20px; /* Optional: Add some padding */
+    font-weight: bold;
+}
+
+footer {
+	position: absolute;
+	bottom: 0;
+	border-top: 1px solid #EEEEEE;
+	padding: 20px 0;
+	width: 100%;
+}
+
+input::placeholder {
+    color: white; /* Change the placeholder text color to white */
+    opacity: 0.5; /* Ensures the color is fully opaque (default might be slightly transparent) */
+}
