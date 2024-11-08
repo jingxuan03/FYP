@@ -12,7 +12,7 @@ require_once 'functions.php';
 <body>
 <?=template_header2('Products')?>
     <div class="container my-5">
-        <h2>List of Products</h2>
+        <h2>Inventory</h2>
         <a class="btn btn-primary" href="screate.php" role="button">New Product</a>
         <br>
         <table class="table">
@@ -77,7 +77,7 @@ while ($row = $result->fetch_assoc()) {
             <td>{$row['date_added']}</td>
             <td>
                 <a class='btn btn-primary btn-sm' href='sedit.php?id={$row['id']}'>Edit</a>
-                <a class='btn btn-danger btn-sm' href='sdelete.php?id={$row['id']}'>Delete</a>
+                <a class='btn btn-danger btn-sm' href='#' onclick='confirmDelete({$row['id']})'>Delete</a>
             </td>
         </tr>";
 }
@@ -90,5 +90,13 @@ $connection->close();
         </table>
     </div>
     <?=template_footer()?>
+
+    <script>
+        function confirmDelete(productId) {
+            if (confirm("Are you sure you want to delete this product?")) {
+                window.location.href = 'sdelete.php?id=' + productId; // Redirect to delete page
+            }
+        }
+    </script>
 </body>
 </html>

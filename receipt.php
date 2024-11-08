@@ -28,7 +28,7 @@ $order_items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
 
-<?=template_header2('Order Success')?>
+<?=template_header('Order Success')?>
 
 <div class="order-success content-wrapper">
     <h1>Thank You for Your Purchase!</h1>

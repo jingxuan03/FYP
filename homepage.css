@@ -1,0 +1,92 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .carousel-container {
+    position: relative;
+    width: 100%;  /* Make the carousel container take up the full width */
+    max-width: 100%;  /* Allow the container to expand to full width */
+    margin: auto;
+    overflow: hidden;
+  }
+  
+  .carousel {
+    display: flex;
+    transition: transform 3s ease-in;
+    justify-content: center;
+    width: 100%;  /* Ensure carousel content fills the container */
+  }
+  
+  .carousel-slide {
+    width: 100%;  /* Make each slide take up the full width of the container */
+    transition: opacity 0.5s ease-in-out;
+    display: none;
+  }
+  
+  .carousel-slide.active {
+    display: block;
+  }
+  
+  .carousel-slide img {
+    width: 100%;  /* Ensure images take up the full width */
+    height: 400px;  /* Set a fixed height for the images */
+    object-fit: cover;  /* Ensure images fill the container without distortion */
+    border-radius: 10px;
+  }
+  
+  .caption {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+    font-size: 1.2em;
+    background-color: rgba(134, 134, 134, 0.5);
+    padding: 10px;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 1.5em;
+    cursor: pointer;
+  }
+  
+  .prev {
+    left: 10px;
+  }
+  
+  .next {
+    right: 10px;
+  }
+  
+  .indicators {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 5px;
+  }
+  
+  .indicator {
+    height: 10px;
+    width: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .indicator.active {
+    background-color: white;
+  }
+  

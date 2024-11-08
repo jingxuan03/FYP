@@ -117,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Description</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="description" value="<?php echo $description; ?>" required>
+                    <textarea class="form-control" name="description" rows="10" required><p><?php echo nl2br(htmlspecialchars($description)); ?></p></textarea>
                 </div>
             </div>
             <div class="row mb-3">

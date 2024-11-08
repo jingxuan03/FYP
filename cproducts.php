@@ -6,7 +6,7 @@ if (session_status() === PHP_SESSION_NONE) {
 include("connection.php");
 require_once 'functions.php';
 
-$user_data = check_login3($con);
+$user_data = check_login($con);
 $pdo = pdo_connect_mysql();
 
 $num_products_on_each_page = 50;
@@ -70,7 +70,7 @@ $total_products = $count_stmt->fetchColumn();
     <div class="products-wrapper" id="products-list">
         <?php if ($products): ?>
             <?php foreach ($products as $product): ?>
-                <a href="index.php?page=sproduct&id=<?=$product['id']?>" class="product">
+                <a href="index.php?page=product&id=<?=$product['id']?>" class="product">
                     <img src="<?=$product['img']?>" width="200" height="200" alt="<?=$product['name']?>">
                     <span class="name"><?=$product['name']?></span>
                     <span class="price">RM <?=$product['price']?></span>

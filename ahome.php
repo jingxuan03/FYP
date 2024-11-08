@@ -71,12 +71,6 @@ if (session_status() === PHP_SESSION_NONE) {
                     <span>Statistics</span>
                 </a>
             </li>
-            <li>
-                <a href="">
-                    <i class="fas fa-cog"></i>
-                    <span>Settings</span>
-                </a>
-            </li>
             <li class="logout">
                 <a href="alogout.php">
                     <i class="fas fa-sign-out-alt"></i>
@@ -102,7 +96,7 @@ if (session_status() === PHP_SESSION_NONE) {
                                 <div class="card--header">
                                     <div class="amount">
                                         <span class="title">
-                                            Total Sales Volume</span>
+                                            Total Revenue</span>
                                             <span class="amount-value">
                                                 RM<?php echo number_format($total_sales_volume, 2); ?>
                                             </span>

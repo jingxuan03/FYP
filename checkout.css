@@ -32,22 +32,72 @@ table th, table td {
     transform: translateY(-2px); /* Slight lift on hover */
 }
 
+.button a {
+    margin-left: 5px;
+    padding: 8px 8px;
+    border: none;
+    background: #4e5c70;
+    color: #FFFFFF;
+    font-size: 16px; /* Increased font size */
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px; /* More rounded corners */
+    transition: background 0.3s;
+}
+
 /* Payment method styles */
 .payment-methods {
-    padding: 20px; /* Added padding for a cleaner look */
-    background-color: #f9f9f9; /* Light background for contrast */
+    margin: 0 auto;
+    max-width: 500px; /* Limit width for better centering */
+    padding: 20px;
+    background-color: #f9f9f9;
     border-radius: 10px;
+    text-align: center; /* Center content */
+}
+
+.payment-option {
+    display: flex;
+    margin: 10px 0;
+    justify-content: center; /* Center align radio buttons */
+}
+
+.payment-option input[type="radio"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    border-radius: 50%;
+    border: 2px solid #4e5c70;
+    outline: none;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.payment-option input[type="radio"]:checked {
+    background-color: #4e5c70;
+    border-color: #4e5c70;
+}
+
+.payment-option label {
+    font-size: 16px;
+    cursor: pointer;
 }
 
 /* Input field styles */
+#credit-card-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the input fields */
+}
+
 #credit-card-info input {
     display: block;
     margin: 10px 0;
     padding: 10px;
-    width: calc(100% - 20px); /* Adjust for padding */
-    max-width: 400px; /* Limit width */
-    border: 1px solid #ccc; /* Subtle border */
-    border-radius: 5px; /* Rounded corners */
+    width: 100%; /* Full width within the container */
+    max-width: 500px; /* Limit max width */
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 #credit-card-info input:focus {

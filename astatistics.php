@@ -162,12 +162,6 @@
                         <span>Statistics</span>
                     </a>
                 </li>
-                <li>
-                    <a href="">
-                        <i class="fas fa-cog"></i>
-                        <span>Settings</span>
-                    </a>
-                </li>
                 <li class="logout">
                     <a href="alogout.php">
                         <i class="fas fa-sign-out-alt"></i>
@@ -178,32 +172,6 @@
         </div>
 
             <div class="main-content">
-            <!-- Wrapper for filters and charts -->
-            <div class="filters-and-charts">
-                <!-- Filter for Top Selling Products -->
-                <!-- <div class="filter">
-                    <label for="start_date_products">Start Date for Products: </label>
-                    <input type="text" id="start_date_products" name="start_date_products" placeholder="Select Start Date">
-
-                    <label for="end_date_products">End Date for Products: </label>
-                    <input type="text" id="end_date_products" name="end_date_products" placeholder="Select End Date">
-
-                    <button id="filter_button_products">Filter for Products</button>
-                </div> -->
-
-
-                <!-- Filter for Top Sellers
-                <div class="filter">
-                    <label for="start_date_sellers">Start Date for Sellers: </label>
-                    <input type="text" id="start_date_sellers" name="start_date_sellers" placeholder="Select Start Date">
-
-                    <label for="end_date_sellers">End Date for Sellers: </label>
-                    <input type="text" id="end_date_sellers" name="end_date_sellers" placeholder="Select End Date">
-
-                    <button id="filter_button_sellers">Filter for Sellers</button>
-                </div> -->
-
-                
                 <div class="chart-container">
                     <canvas id="topSellingProductsChart" width="400" height="400"></canvas>
                 </div>
@@ -220,150 +188,11 @@
                     <canvas id="yearlyEarningsChart" width="400" height="400"></canvas>
                 </div>
 
-
-                <!-- Filter for Monthly Earnings
-                <div class="filter">
-                    <label for="month_filter">Select Month: </label>
-                    <select id="month_filter" name="month_filter">
-                        <option value="">Select a Month</option>
-                        <?php
-                        foreach ($months as $key => $month) {
-                            echo "<option value=\"$key\">$month</option>";
-                        }
-                        ?>
-                    </select>
-                    <button id="filter_button_month">Filter</button>
-                </div>
-
-
-            </div>
-        </div> -->
-
-        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
         <script>
-            // Initialize Flatpickr for each graph's filter
-            flatpickr("#start_date_products", {
-                dateFormat: "Y-m-d",
-                inline: false,
-                minDate: new Date().fp_incr(-5 * 365),
-                maxDate: "today",
-                locale: { firstDayOfWeek: 1 },
-                allowInput: true,
-                appendTo: document.body
-            });
-
-            flatpickr("#end_date_products", {
-                dateFormat: "Y-m-d",
-                inline: false,
-                minDate: new Date().fp_incr(-5 * 365),
-                maxDate: "today",
-                locale: { firstDayOfWeek: 1 },
-                allowInput: true,
-                appendTo: document.body
-            });
-
-            flatpickr("#start_date_sellers", {
-                dateFormat: "Y-m-d",
-                inline: false,
-                minDate: new Date().fp_incr(-5 * 365),
-                maxDate: "today",
-                locale: { firstDayOfWeek: 1 },
-                allowInput: true,
-                appendTo: document.body
-            });
-
-            flatpickr("#end_date_sellers", {
-                dateFormat: "Y-m-d",
-                inline: false,
-                minDate: new Date().fp_incr(-5 * 365),
-                maxDate: "today",
-                locale: { firstDayOfWeek: 1 },
-                allowInput: true,
-                appendTo: document.body
-            });
 
             let topSellingProductsChart;
             let topSellerChart;
             let monthlyEarningsChart;
-
-            // Event listeners for filter buttons
-            // document.getElementById('filter_button_products').addEventListener('click', function () {
-            //     const startDate = document.getElementById('start_date_products').value;
-            //     const endDate = document.getElementById('end_date_products').value;
-
-            //     if (startDate && endDate) {
-            //         filterDataByDate('products', startDate, endDate);
-            //     } else {
-            //         alert("Please select both start and end dates for products.");
-            //     }
-            // });
-
-            // document.getElementById('filter_button_sellers').addEventListener('click', function () {
-            //     const startDate = document.getElementById('start_date_sellers').value;
-            //     const endDate = document.getElementById('end_date_sellers').value;
-
-            //     if (startDate && endDate) {
-            //         filterDataByDate('sellers', startDate, endDate);
-            //     } else {
-            //         alert("Please select both start and end dates for sellers.");
-            //     }
-            // });
-
-            // document.getElementById('filter_button_month').addEventListener('click', function () {
-            //     const selectedMonth = document.getElementById('month_filter').value;
-
-            //     if (selectedMonth !== '') {
-            //         updateMonthlyEarningsChart(selectedMonth);
-            //     } else {
-            //         alert("Please select a month.");
-            //     }
-            // });
-
-            // Function to send separate requests for each graph filter
-            function filterDataByDate(type, startDate, endDate) {
-                const xhr = new XMLHttpRequest();
-                let url = '';
-
-                // Append the 'type' query parameter to the URL
-                url = `filter_data.php?start_date=${encodeURIComponent(startDate)}&end_date=${encodeURIComponent(endDate)}&type=${type}`;
-
-                xhr.open('GET', url, true);
-
-                xhr.onload = function () {
-                    if (xhr.status === 200) {
-                        const filteredData = JSON.parse(xhr.responseText);
-                        updateCharts(type, filteredData);
-                    }
-                };
-
-                xhr.send();
-            }
-
-
-            // Function to update the specific chart based on the filter type
-            function updateCharts(type, filteredData) {
-                if (type === 'products') {
-                    const topSellingProductsChart = Chart.instances[0]; // First chart (products)
-                    topSellingProductsChart.data.labels = filteredData.product_names;
-                    topSellingProductsChart.data.datasets[0].data = filteredData.product_sales;
-                    topSellingProductsChart.update();
-                } else if (type === 'sellers') {
-                    const topSellerChart = Chart.instances[1]; // Second chart (sellers)
-                    topSellerChart.data.labels = filteredData.seller_names;
-                    topSellerChart.data.datasets[0].data = filteredData.seller_sales;
-                    topSellerChart.update();
-                }
-            }
-
-            function updateMonthlyEarningsChart(monthIndex) {
-                const selectedMonth = <?php echo json_encode($months); ?>[monthIndex];
-                const earningsData = <?php echo json_encode($earnings); ?>[monthIndex];
-
-                monthlyEarningsChart.data.labels = [selectedMonth];
-                monthlyEarningsChart.data.datasets[0].data = [earningsData];
-                monthlyEarningsChart.update();
-            }
 
             // Chart initialization (keeps the previous initialization logic)
             window.onload = function () {

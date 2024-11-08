@@ -21,28 +21,6 @@ if (isset($_GET['id'])) {
     if (!$product) {
         exit('Product does not exist!');
     }
-    
-    // Record the product view
-    record_product_view($pdo, $user_data['user_id'], $product['id']);
-} else {
-    exit('Product does not exist!');
-}
-
-// Function to record a product view
-function record_product_view($pdo, $user_id, $product_id) {
-    // Check if this view is already recorded to avoid duplicates
-    $stmt = $pdo->prepare("SELECT * FROM user_views WHERE user_id = ? AND product_id = ?");
-    $stmt->execute([$user_id, $product_id]);
-
-    if ($stmt->rowCount() === 0) {
-        // If this product hasn't been viewed before, insert it
-        $stmt = $pdo->prepare("INSERT INTO user_views (user_id, product_id) VALUES (?, ?)");
-        $stmt->execute([$user_id, $product_id]);
-    } else {
-        // Update the timestamp for an existing view
-        $stmt = $pdo->prepare("UPDATE user_views SET view_time = CURRENT_TIMESTAMP WHERE user_id = ? AND product_id = ?");
-        $stmt->execute([$user_id, $product_id]);
-    }
 }
 ?>
 
@@ -55,7 +33,7 @@ function record_product_view($pdo, $user_id, $product_id) {
 </head>
 
 <body>
-<?=template_header2('Product')?> <!-- Assuming you have a header template -->
+<?=template_header('Product')?>
 
 <div class="product content-wrapper">
     <img src="<?= htmlspecialchars($product['img']) ?>" width="500" height="500" alt="<?= htmlspecialchars($product['name']) ?>">
@@ -70,11 +48,11 @@ function record_product_view($pdo, $user_id, $product_id) {
         <a href="comparison.php" class="compare-button">Compare</a>
         <div class="description">
             <span class="text">Product Description :</span>
-            <p><?= htmlspecialchars($product['desc']) ?></p>
+            <p><?= nl2br(str_replace(['<p>', '</p>', '<br>'], ['', '', "\n"], $product['desc'])) ?></p>
         </div>
     </div>
 </div>
 
-<?=template_footer()?> <!-- Assuming you have a footer template -->
+<?=template_footer()?> 
 </body>
 </html>

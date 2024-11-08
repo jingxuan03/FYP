@@ -65,12 +65,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 </div>
 
                 <div class="remember-forgot">
-                    <label><input type="checkbox">Remember Me</label>
                     <a href="#">Forgot Password?</a>
                 </div>
 
                 <button type="submit" value="Login" class="btn">Login</button>
-
 
                 <div class="login-register">
                     <p>Don't have an account?<a href="cregister.php" class="register-link"> Register Here</a></p>

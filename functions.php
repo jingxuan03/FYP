@@ -154,6 +154,11 @@ function template_header($title) {
                 <header>
                     <div class="content-wrapper">
                         <h1>Lunar</h1>
+                        <nav>
+                        <a href="homepage.php">Home</a>
+                        <a href="contactus.php">Contact Us</a>
+                        <a href="gateway.php">Login</a>
+                        </nav>
                     </div>
                 </header>
                 <main>
@@ -180,17 +185,12 @@ function template_header($title) {
                                 <a href="index.php?page=shome">Home</a>
                                 <a href="index.php?page=sproducts">Marketplace</a>
                                 <a href="index.php?page=sinventory">Inventory</a>
+                                <a href="index.php?page=sgeneratedsales">Sales</a>
                                 <a href="slogout.php">
                                 <i class="fas fa-sign-out-alt"></i>
                                 <span>Logout</span>
                                 </a>
                             </nav>
-                            <div class="link-icons">
-                                <a href="index.php?page=scart">
-                                    <i class="fas fa-shopping-cart"></i>
-                                    <span>$num_items_in_cart</span>
-                                </a>
-                            </div>
                         </div>
                     </header>
                     <main>

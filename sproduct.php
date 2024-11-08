@@ -39,13 +39,12 @@ if (isset($_GET['id'])) {
         <form action="index.php?page=cart" method="post" style="display: inline;">
             <input type="number" name="quantity" value="1" min="1" max="<?= htmlspecialchars($product['quantity']) ?>" placeholder="Quantity" required>
             <input type="hidden" name="product_id" value="<?= htmlspecialchars($product['id']) ?>">
-            <input type="submit" value="Add To Cart">
         </form>
             <a href="comparison.php" class="compare-button">Compare</a>
-        <div class="description">
-            <span class="text">Product Description :</span>
-            <p><?= htmlspecialchars($product['desc']) ?></p>
-        </div>
+            <div class="description">
+                <span class="text">Product Description :</span>
+                <p><?= nl2br(str_replace(['<p>', '</p>', '<br>'], ['', '', "\n"], $product['desc'])) ?></p>
+            </div>
     </div>
 </div>
 

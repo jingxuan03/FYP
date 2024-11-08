@@ -1,9 +1,18 @@
 <?php
-
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 require_once 'functions.php';
 
-// Assuming user is logged in and their user ID is stored in session
-$user_id = $_SESSION['user_id'];
+// Ensure the user is logged in
+if (!isset($_SESSION['user_id'])) {
+    header('Location: login.php'); // Redirect to login page if not logged in
+    exit;
+}
+
+include("connection.php");
+
+$user_id = $_SESSION['user_id']; // Get the logged-in user's ID
 
 // Fetch purchase history for the logged-in user
 $stmt = $pdo->prepare('
@@ -36,7 +45,6 @@ foreach ($purchase_history as $order) {
     }
     $grouped_orders[$order_id]['products'][] = $order;
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +54,7 @@ foreach ($purchase_history as $order) {
     <link rel="stylesheet" href="cpurchasehistory.css">
 </head>
 <body>
-<?=template_header('Products')?>
+<?=template_header('Products')?> <!-- Assuming you have a header template -->
 
 <h1>Purchase History</h1>
 

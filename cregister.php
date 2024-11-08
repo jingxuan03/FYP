@@ -21,14 +21,14 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
         // Use prepared statements to avoid SQL injection
-        $stmt = $con->prepare("INSERT INTO users_seller (user_id, user_name, password, email) VALUES (?, ?, ?, ?)");
+        $stmt = $con->prepare("INSERT INTO users_cust (user_id, user_name, password, email) VALUES (?, ?, ?, ?)");
 
         // Bind parameters (s for string, i for integer)
         $stmt->bind_param("ssss", $user_id, $user_name, $hashed_password, $email);
 
         // Execute the statement
         if ($stmt->execute()) {
-            header("Location: slogin.php");
+            header("Location: clogin.php");
             die;
         } else {
             echo "Error in registration!";
@@ -46,7 +46,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 <html lang="en">
 
 <head>
-    <title>Seller Registration</title>
+    <title>Customer & Seller Register Page</title>
     <link rel="stylesheet" href="clogin.css">
     <link rel="stylesheet" href="clogin2.css">
 </head>
@@ -56,7 +56,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 
     <div class="wrapper">
         <div class="form-box register">
-            <h2>Seller Registration</h2>
+            <h2>Customer Registration</h2>
             <form method="post" action="">
                 <div id="registerMessage" class="messageDiv" style="display: none;"></div>
                 <div class="input-box">
@@ -83,7 +83,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
                 <button type="submit" class="btn">Register</button>
 
                 <div class="login-register">
-                    <p>Already have an account?<a href="slogin.php" class="login-link"> Login</a></p>
+                    <p>Already have an account?<a href="clogin.php" class="login-link"> Login</a></p>
                 </div>
             </form>
         </div>

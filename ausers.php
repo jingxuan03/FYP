@@ -6,18 +6,33 @@ require_once 'functions.php'; // Include your functions
 
 $pdo = pdo_connect_mysql();
 
-// Handle deletion request
-if (isset($_GET['delete'])) {
-    $id = $_GET['delete'];
-    $type = $_GET['type']; // Type can be 'seller' or 'customer'
-    
-    if ($type == 'seller') {
-        $stmt = $pdo->prepare('DELETE FROM users_seller WHERE user_id = ?');
-    } else {
-        $stmt = $pdo->prepare('DELETE FROM users_customer WHERE user_id = ?');
+try {
+    // Handle deletion request
+    if (isset($_GET['delete']) && isset($_GET['type'])) {
+        $id = $_GET['delete'];
+        $type = $_GET['type']; // Type can be 'seller' or 'customer'
+
+        if ($type == 'seller') {
+            // Delete associated products first
+            $stmt = $pdo->prepare('DELETE FROM products WHERE seller_id = ?');
+            $stmt->execute([$id]);
+
+            // Now delete the seller
+            $stmt = $pdo->prepare('DELETE FROM users_seller WHERE user_id = ?');
+            $stmt->execute([$id]);
+        } else {
+            $stmt = $pdo->prepare('DELETE FROM users_cust WHERE user_id = ?');
+            $stmt->execute([$id]);
+        }
+
+        header('Location: ausers.php');
+        exit;
     }
-    $stmt->execute([$id]);
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
 }
+
+
 
 // Fetch sellers and customers
 $sellers = $pdo->query('SELECT user_id, user_name, email, added_at FROM users_seller')->fetchAll(PDO::FETCH_ASSOC);
@@ -56,12 +71,6 @@ $customers = $pdo->query('SELECT user_id, user_name, email, added_at FROM users_
             <a href="astatistics.php">
                 <i class="fas fa-chart-bar"></i>
                 <span>Statistics</span>
-            </a>
-        </li>
-        <li>
-            <a href="">
-                <i class="fas fa-cog"></i>
-                <span>Settings</span>
             </a>
         </li>
         <li class="logout">
